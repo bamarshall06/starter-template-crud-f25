@@ -48,26 +48,23 @@ mysql -h [host] -u [username] -p [database_name] < database/seed_data.sql
 
 ## Database Connection
 
-This starter kit uses a single connection string format for both local and production:
+This starter kit uses JAWS DB for both local development and production.
 
-```
-mysql://username:password@host:port/database
-```
+### Setup
 
-### Local Development
+1. Add JAWS DB to your Heroku app:
+   ```bash
+   heroku addons:create jawsdb:kitefin
+   ```
 
-In your `.env` file, set `DATABASE_URL`:
+2. Get your connection string:
+   ```bash
+   heroku config:get JAWSDB_URL
+   ```
 
-```
-DATABASE_URL=mysql://root:mypassword@localhost:3306/my_database
-```
+3. Add it to your `.env` file:
+   ```
+   JAWSDB_URL=mysql://username:password@host:port/database
+   ```
 
-### Heroku (Production)
-
-When you add the JAWS DB add-on, Heroku automatically sets `JAWSDB_URL`:
-
-```bash
-heroku addons:create jawsdb:kitefin
-```
-
-The app checks for `JAWSDB_URL` first, then falls back to `DATABASE_URL`.
+On Heroku, the `JAWSDB_URL` is set automatically - you only need the `.env` file for local development.

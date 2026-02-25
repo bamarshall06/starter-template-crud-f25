@@ -16,15 +16,12 @@ This is a Flask starter kit with basic structure and tooling for web application
 2. **Configure environment:**
    ```bash
    cp .env.example .env
-   # Edit .env - set DATABASE_URL to your MySQL connection string
-   # Example: DATABASE_URL=mysql://root:password@localhost:3306/mydb
+   heroku config:get JAWSDB_URL  # Copy this value to your .env file
    ```
 
-3. **Setup database:**
-   ```bash
-   mysql -u your_user -p your_database < database/schema.sql
-   mysql -u your_user -p your_database < database/seed_data.sql  # Optional sample data
-   ```
+3. **Setup database (first time only):**
+
+   Run `database/schema.sql` in your JAWS DB using MySQL Workbench or the Heroku console.
 
 4. **Run the app:**
    ```bash

@@ -10,20 +10,16 @@ load_dotenv()
 
 def get_db_config():
     """
-    Get database configuration from environment variables.
-
-    Checks for connection string in this order:
-    1. JAWSDB_URL - Set automatically by Heroku JAWS DB add-on
-    2. DATABASE_URL - For local development
+    Get database configuration from JAWSDB_URL environment variable.
 
     Connection string format: mysql://username:password@host:port/database
 
     Returns dict with host, user, password, database, and port.
     """
-    db_url = os.getenv('JAWSDB_URL') or os.getenv('DATABASE_URL')
+    db_url = os.getenv('JAWSDB_URL')
 
     if not db_url:
-        raise ValueError("No database URL found. Set JAWSDB_URL or DATABASE_URL in your .env file.")
+        raise ValueError("JAWSDB_URL not found. Add it to your .env file.")
 
     parsed = urlparse(db_url)
     return {
