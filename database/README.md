@@ -46,13 +46,35 @@ mysql -h [host] -u [username] -p [database_name] < database/seed_data.sql
 - Timestamps are automatically managed by MySQL
 - Sample data includes 10 test records with realistic names and dates
 
-## Environment Variables
+## Connection Options
 
-Make sure your `.env` file contains the correct database connection information:
+This starter kit supports two ways to connect to MySQL:
+
+### Option 1: JAWS DB URL (Heroku Production)
+
+When you add the JAWS DB add-on to your Heroku app, it automatically sets the `JAWSDB_URL` config var. The app detects this and uses it automatically.
+
+```bash
+# Heroku sets this automatically when you provision JAWS DB
+heroku addons:create jawsdb:kitefin
+```
+
+The connection string format is:
+```
+mysql://username:password@host:port/database
+```
+
+### Option 2: Separate Variables (Local Development)
+
+For local development, use separate environment variables in your `.env` file:
 
 ```
-DB_HOST=your_database_host
-DB_USER=your_database_user
-DB_PASSWORD=your_database_password
-DB_NAME=your_database_name
+DB_HOST=localhost
+DB_USER=your_user
+DB_PASSWORD=your_password
+DB_NAME=your_database
 ```
+
+### Priority
+
+If both `JAWSDB_URL` and the separate variables are set, `JAWSDB_URL` takes priority.

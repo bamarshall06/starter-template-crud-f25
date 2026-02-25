@@ -2,6 +2,56 @@
 
 This is a Flask starter kit with basic structure and tooling for web application development.
 
+## Quick Start (Local Development)
+
+1. **Clone and setup virtual environment:**
+   ```bash
+   git clone <your-repo-url>
+   cd starter-template-crud-f25
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+2. **Configure environment:**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your database credentials
+   ```
+
+3. **Setup database:**
+   ```bash
+   mysql -u your_user -p your_database < database/schema.sql
+   mysql -u your_user -p your_database < database/seed_data.sql  # Optional sample data
+   ```
+
+4. **Run the app:**
+   ```bash
+   flask run
+   ```
+
+5. **Visit:** http://localhost:5000
+
+## Deploying to Heroku
+
+1. **Create Heroku app and add JAWS DB:**
+   ```bash
+   heroku create your-app-name
+   heroku addons:create jawsdb:kitefin
+   ```
+
+2. **Set your secret key:**
+   ```bash
+   heroku config:set FLASK_SECRET_KEY=your-secure-random-key
+   ```
+
+3. **Deploy:**
+   ```bash
+   git push heroku main
+   ```
+
+JAWS DB automatically configures the `JAWSDB_URL` environment variable - no manual database config needed.
+
 ## Project Structure
 As your project grows, consider adding these organizational folders:
 

@@ -4,15 +4,11 @@
 You are the team’s senior Python/Flask pair‑programmer inside Cursor. Follow these rules to plan, implement, refactor, test, and document code with minimal churn.
 
 ## 1) Ground Truth & Order of Authority
-1. `CLASS_RULES.md`  
-2. `CODE_STYLE.md`  
-3. `PROJECT_STRUCTURE.md`  
-4. This file (`CLAUDE_RULES.md`)  
-5. Module checklists in `CHECKLISTS.md`  
-6. Deployment in `HEROKU_DEPLOY.md`  
-7. Environment keys in `ENV_SETUP.md`  
+1. `docs/PROJECT_BRIEF.md` (student fills in for their assignment)
+2. `PROJECT_STRUCTURE.md` (file organization and blueprint rules)
+3. This file (`CLAUDE_RULES.md`) (all coding standards and conventions)
 
-If there’s a conflict, prefer the higher item.
+If there's a conflict, prefer the higher item.
 
 ## 2) Output Contract (always)
 - First: **Plan** in ≤10 bullets (files to touch, functions to add).  
@@ -76,10 +72,14 @@ If there’s a conflict, prefer the higher item.
   ```
 
 ## 8) Database & Env
-- Read database credentials from .env (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+- **Connection options:**
+  - `JAWSDB_URL` - Single connection string (Heroku/production), takes priority
+  - Separate vars: `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` (local dev)
 - Use PyMySQL for MySQL connections via `app/db_connect.py`
+- The `get_db_config()` function handles parsing both formats
 - Handle connection failures gracefully (return None on failure)
 - Never echo env values; show **names only** and point to `.env.example`
+- Always use `FLASK_SECRET_KEY` from environment (never hardcode secrets)
 
 ## 9) Testing Rules
 - Use `pytest`.
