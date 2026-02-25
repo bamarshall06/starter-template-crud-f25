@@ -72,11 +72,11 @@ If there's a conflict, prefer the higher item.
   ```
 
 ## 8) Database & Env
-- **Connection options:**
-  - `JAWSDB_URL` - Single connection string (Heroku/production), takes priority
-  - Separate vars: `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` (local dev)
+- **Connection string format:** `mysql://username:password@host:port/database`
+  - `JAWSDB_URL` - Set automatically by Heroku JAWS DB add-on
+  - `DATABASE_URL` - Use this for local development
 - Use PyMySQL for MySQL connections via `app/db_connect.py`
-- The `get_db_config()` function handles parsing both formats
+- The `get_db_config()` function parses the connection string
 - Handle connection failures gracefully (return None on failure)
 - Never echo env values; show **names only** and point to `.env.example`
 - Always use `FLASK_SECRET_KEY` from environment (never hardcode secrets)

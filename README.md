@@ -16,7 +16,8 @@ This is a Flask starter kit with basic structure and tooling for web application
 2. **Configure environment:**
    ```bash
    cp .env.example .env
-   # Edit .env with your database credentials
+   # Edit .env - set DATABASE_URL to your MySQL connection string
+   # Example: DATABASE_URL=mysql://root:password@localhost:3306/mydb
    ```
 
 3. **Setup database:**
